@@ -1,0 +1,92 @@
+
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#include <glui.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <vector.h>
+#include <math.h>
+
+#include "keyframe.h"
+#include "timer.h"
+#include "vector.h"
+#include "objloader.h"
+
+
+std::vector < Vertex > vertices;
+std::vector < UV > uvs;
+std::vector < Normal > normals;
+
+
+
+    //other functions and main
+
+    void reshape(int w,int h)
+    {
+        glViewport(0,0,w,h);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective (60, (GLfloat)w / (GLfloat)h, 0.1, 1000.0);
+        //glOrtho(-25,25,-2,2,0.1,100);
+        glMatrixMode(GL_MODELVIEW);
+    }
+    void drawBaymax()
+    {
+        glPushMatrix();
+        glTranslatef(0,-40.00,-105);
+        glScalef(0.7,0.7,0.7);
+        glRotatef(elephantrot,0,1,0);
+
+
+		glBegin(GL_QUADS);
+
+		for ( int i = 0 ; i < number_of_objects; i++ ) {
+			//glBufferData(GL_ARRAY_BUFFER, vertices[i].size() * sizeof(Vector(3)), &vertices[i][0], GL_STATIC_DRAW);
+			int number_of_polygons = (vertices[i]).size() / 4;
+			for (int j = 0; j < number_of_polygons; j++){
+				glNormal3f( normals[i][j].x, normals[i][j].y, normals[i][j].z);
+				glVertex3f( vertices[i][j].x, vertices[i][j].y, vertices[i][j].z);
+				glNormal3f( normals[i][j+1].x, normals[i][j+1].y, normals[i][j+1].z);
+				glVertex3f( vertices[i][j+1].x, vertices[i][j+1].y, vertices[i][j+1].z);
+				glNormal3f( normals[i][j+2].x, normals[i][j+2].y, normals[i][j+2].z);
+				glVertex3f( vertices[i][j+2].x, vertices[i][j+2].y, vertices[i][j+2].z);
+				glNormal3f( normals[i][j+3].x, normals[i][j+3].y, normals[i][j+3].z);
+				glVertex3f( vertices[i][j+3].x, vertices[i][j+3].y, vertices[i][j+3].z);
+			}
+
+		}
+		glEnd();
+
+
+
+        glPopMatrix();
+        elephantrot=elephantrot+0.01;
+        if(elephantrot>360)elephantrot=elephantrot-360;
+    }
+    void display(void)
+    {
+        glClearColor (0.0,0.0,0.0,1.0);
+        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glLoadIdentity();
+        drawElephant();
+        glutSwapBuffers(); //swap the buffers
+    }
+
+
+    int main(int argc,char **argv)
+    {
+        glutInit(&argc,argv);
+        glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
+        glutInitWindowSize(800,450);
+        glutInitWindowPosition(20,20);
+        glutCreateWindow("ObjLoader");
+        glutReshapeFunc(reshape);
+        glutDisplayFunc(display);
+        glutIdleFunc(display);
+        loadOBJ("baymax/chestbelly.obj", vertices, uvs, normals);
+        glutMainLoop();
+        return 0;
+    }
