@@ -1,5 +1,4 @@
 # animation
 CSC418 A3 Part B
-How to Use:
->make\n
+Run using:
 baymax 900 700
