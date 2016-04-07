@@ -802,14 +802,32 @@ Vector getInterpolatedJointDOFS(float time)
 
 	// Need to normalize time to (0, 1]
 	time = (time - keyframes[i-1].getTime()) / (keyframes[i].getTime() - keyframes[i-1].getTime());
+    float time2 = time * time;
 
 	// Get appropriate data points and tangent vectors
 	// for computing the interpolation
-	Vector p0 = keyframes[i-1].getDOFVector();
-	Vector p1 = keyframes[i].getDOFVector();
+	Vector p1 = keyframes[i-1].getDOFVector();
+	Vector p2 = keyframes[i].getDOFVector();
+    Vector p0, p3;
 	
-	// Linear interpolation.
-	return p0 + (p1-p0)*time;
+    if (i == 1) {
+        p0 = keyframes[i-1].getDOFVector();
+        p3 = keyframes[i+1].getDOFVector();
+    } else if (i == maxValidKeyframe) {
+        p0 = keyframes[i-2].getDOFVector();
+        p3 = keyframes[i].getDOFVector();
+    } else {
+        p0 = keyframes[i-2].getDOFVector();
+        p3 = keyframes[i+1].getDOFVector();
+    }
+    
+    Vector a0 = p0*(-0.5) + p1*1.5 - p2*1.5 + p3*0.5;
+    Vector a1 = p0 - p1*2.5 + p2*2 - p3*0.5;
+    Vector a2 = p0*(-0.5) + p2*0.5;
+    Vector a3 = p1;
+    
+	// Cubic interpolation.
+	return a0*time*time2 + a1*time2 + a2*time + a3;
 }
 
 
