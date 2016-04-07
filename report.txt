@@ -1,0 +1,11 @@
+Group:
+Chu Xi Huang, 998912262, CDF account: c4huangd
+Xiuyan Yu
+
+Part A:
+The ray-square intersection was done by intersecting the ray vector with the x-y plane. When the x, y values of the ray vector were inside the boundary of the x-y plane, the intersection was found.
+The ray-sphere intersection was done by solving the sphere equation and the ray vector algebraically. 
+Phong shading was done by calculating the diffuse, specular and ambient components with normal, camera, reflection and light vectors.
+
+Part B:
+Cubic interpolation was used for animation smoothness. Four points, p0, p1, p2 and p3 were first found, and time was calculated between p1 and p2. Then the coefficient a0, a1, a2 and a3 were calculated by applying the corresponding formulas. At the beginning of the spline and the end of the spline where four distinct points could not be found, the first point and the last point were duplicated to make up for four points. For example, at the beginning of the spline, p0 = p1.
