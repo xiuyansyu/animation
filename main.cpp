@@ -224,7 +224,7 @@ const float HIP_ROLL_MAX         =  180.0;
 
 // Light source settings: Choose a circle of fixed radius, on plane z = something
 GLfloat light_pos[] = {radius*cos(2.5),radius*sin(2.5),40,1};
-GLfloat theta = 2.5;
+GLfloat LIGHT_SOURCE_ANGLE = 2.5;
 const float LIGHT_SOURCE_MIN = -1*PI;
 const float LIGHT_SOURCE_MAX =  PI;
 
@@ -682,7 +682,7 @@ void initGlui()
 	glui_lightsource = GLUI_Master.create_glui("Light Source Control", 0, Win[0]+12, 360);
 	glui_panel = glui_lightsource->add_panel("", GLUI_PANEL_NONE);
 
-	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "theta:", GLUI_SPINNER_FLOAT, &theta);
+	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "theta:", GLUI_SPINNER_FLOAT, joint_ui_data->getDOFPtr(Keyframe::LIGHT_SOURCE_ANGLE));
 	glui_spinner->set_float_limits(LIGHT_SOURCE_MIN, LIGHT_SOURCE_MAX, GLUI_LIMIT_CLAMP);
 	glui_spinner->set_speed(SPINNER_SPEED);
 
@@ -695,7 +695,7 @@ void initGlui()
 	glui_spinner->set_float_limits(LIGHT_SOURCE_Y_MIN, LIGHT_SOURCE_Y_MAX, GLUI_LIMIT_CLAMP);
 	glui_spinner->set_speed(SPINNER_SPEED);
 */
-	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "z:", GLUI_SPINNER_FLOAT, &light_pos[2]);
+	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "z:", GLUI_SPINNER_FLOAT, joint_ui_data->getDOFPtr(Keyframe::LIGHT_SOURCE_Z));
 	glui_spinner->set_float_limits(LIGHT_SOURCE_Z_MIN, LIGHT_SOURCE_Z_MAX, GLUI_LIMIT_CLAMP);
 	glui_spinner->set_speed(SPINNER_SPEED);
 
@@ -923,9 +923,9 @@ void display(void)
 	// LIGHTING SETTINGS
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	light_pos[0] = radius*cos(theta);
-	light_pos[1] = radius*sin(theta);
-	// light_pos[2] is controlled directly using spinner
+	light_pos[0] = radius*cos(joint_ui_data->getDOF(Keyframe::LIGHT_SOURCE_ANGLE));
+	light_pos[1] = radius*sin(joint_ui_data->getDOF(Keyframe::LIGHT_SOURCE_ANGLE));
+	light_pos[2] = joint_ui_data->getDOF(Keyframe::LIGHT_SOURCE_Z);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
 
 
