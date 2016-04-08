@@ -855,11 +855,13 @@ void initGlui()
 
     GLUI_Master.set_glutIdleFunc(NULL);
 
-
+    // For submission purposes, except for keyframe Contol, all other GLUI windows are
+    // Commented out.
+    
+    /*
 	// Create GLUI window (joint controls) ***************
 	//
 	glui_joints = GLUI_Master.create_glui("Joint Control", 0, Win[0]+12, 0);
-
     // Create controls to specify root position and orientation
 	glui_panel = glui_joints->add_panel("Camera");
 
@@ -990,7 +992,6 @@ void initGlui()
 	glui_spinner->set_speed(SPINNER_SPEED);
 
 
-
 	// ***************************************************
 	glui_lightsource = GLUI_Master.create_glui("Light Source Control", 0, Win[0]+12, 360);
 	glui_panel = glui_lightsource->add_panel("", GLUI_PANEL_NONE);
@@ -999,19 +1000,10 @@ void initGlui()
 	glui_spinner->set_float_limits(LIGHT_SOURCE_MIN, LIGHT_SOURCE_MAX, GLUI_LIMIT_CLAMP);
 	glui_spinner->set_speed(SPINNER_SPEED);
 
-/*	for 3D control of lightsource position:
-	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "light x:", GLUI_SPINNER_FLOAT, &light_pos[0]);
-	glui_spinner->set_float_limits(LIGHT_SOURCE_X_MIN, LIGHT_SOURCE_X_MAX, GLUI_LIMIT_CLAMP);
-	glui_spinner->set_speed(SPINNER_SPEED);
-
-	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "light y:", GLUI_SPINNER_FLOAT, &light_pos[1]);
-	glui_spinner->set_float_limits(LIGHT_SOURCE_Y_MIN, LIGHT_SOURCE_Y_MAX, GLUI_LIMIT_CLAMP);
-	glui_spinner->set_speed(SPINNER_SPEED);
-*/
 	glui_spinner = glui_lightsource->add_spinner_to_panel(glui_panel, "z:", GLUI_SPINNER_FLOAT, joint_ui_data->getDOFPtr(Keyframe::LIGHT_SOURCE_Z));
 	glui_spinner->set_float_limits(LIGHT_SOURCE_Z_MIN, LIGHT_SOURCE_Z_MAX, GLUI_LIMIT_CLAMP);
 	glui_spinner->set_speed(SPINNER_SPEED);
-
+     */
 
 	// Create GLUI window (keyframe controls) ************
 	//
@@ -1035,13 +1027,13 @@ void initGlui()
 	// Add buttons to load and save keyframes from a file
 	// Add buttons to start / stop animation and to render frames to file
 	glui_panel = glui_keyframe->add_panel("", GLUI_PANEL_NONE);
-	glui_keyframe->add_button_to_panel(glui_panel, "Load Keyframe", 0, loadKeyframeButton);
+	//glui_keyframe->add_button_to_panel(glui_panel, "Load Keyframe", 0, loadKeyframeButton);
 	glui_keyframe->add_button_to_panel(glui_panel, "Load Keyframes From File", 0, loadKeyframesFromFileButton);
 	glui_keyframe->add_button_to_panel(glui_panel, "Start / Stop Animation", 0, animateButton);
 	glui_keyframe->add_column_to_panel(glui_panel, false);
-	glui_keyframe->add_button_to_panel(glui_panel, "Update Keyframe", 0, updateKeyframeButton);
-	glui_keyframe->add_button_to_panel(glui_panel, "Save Keyframes To File", 0, saveKeyframesToFileButton);
-	glui_keyframe->add_button_to_panel(glui_panel, "Render Frames To File", 0, renderFramesToFileButton);
+	//glui_keyframe->add_button_to_panel(glui_panel, "Update Keyframe", 0, updateKeyframeButton);
+	//glui_keyframe->add_button_to_panel(glui_panel, "Save Keyframes To File", 0, saveKeyframesToFileButton);
+	//glui_keyframe->add_button_to_panel(glui_panel, "Render Frames To File", 0, renderFramesToFileButton);
 
 	glui_keyframe->add_separator();
 
@@ -1055,7 +1047,7 @@ void initGlui()
 	//
 	// ***************************************************
 
-
+    /*
 	// Create GLUI window (render controls) ************
 	//
 	glui_render = GLUI_Master.create_glui("Render Control", 0, 367, Win[1]+64);
@@ -1070,13 +1062,13 @@ void initGlui()
 	glui_render->add_radiobutton_to_group(glui_radio_group, "Matte");
 	//
 	// ***************************************************
-
+     */
 
 	// Tell GLUI windows which window is main graphics window
-	glui_joints->set_main_gfx_window(windowID);
+	//glui_joints->set_main_gfx_window(windowID);
 	glui_keyframe->set_main_gfx_window(windowID);
-	glui_render->set_main_gfx_window(windowID);
-	glui_lightsource->set_main_gfx_window(windowID);
+	//glui_render->set_main_gfx_window(windowID);
+	//glui_lightsource->set_main_gfx_window(windowID);
 }
 
 

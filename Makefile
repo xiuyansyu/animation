@@ -42,7 +42,7 @@ LINKER	      = g++
 OBJ           = $(CPPSRCS:.cpp=.o) $(CSRCS:.c=.o)
 
 # Define name of target executable
-PROGRAM	          = main
+PROGRAM	          = animation
 
 # Define all C source files here
 CSRCS         =

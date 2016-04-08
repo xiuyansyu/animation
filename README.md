@@ -3,7 +3,11 @@ CSC418 A3 Part B
 
 Run using: 
 
-baymax 900 700
+make;
+./animation
+
+To start the animation, please first click on “Load Keyframes From File”, then click on “Start / Stop Animation”.
+
 # completed
 obtained model from http://www.turbosquid.com/3d-models/free-max-mode-baymax-big-hero-6/881191
 
@@ -15,9 +19,8 @@ added articulation of parts
 
 added DoF light and camera movement
 
-# need to add
-cubic interpolation ( currently is linear ): edit Vector getInterpolatedJointDOFS(float time)
+cubic interpolation
 
-Skybox (optional? a3 did not require it but all the examples have it)
+Skybox
 
-keyframes (can save using GLUI)
+keyframes
