@@ -9,7 +9,7 @@ Part A:
 The ray-square intersection was done by intersecting the ray vector with the x-y plane. When the x, y values of the ray vector were inside the boundary of the x-y plane, the intersection was found.
 The ray-sphere intersection was done by solving the sphere equation and the ray vector algebraically. 
 Phong shading was done by calculating the diffuse, specular and ambient components with normal, camera, reflection and light vectors.
-Anti-aliasing was done by using a uniformly distributed grid sampling algorithm. An integer "anti-aliasing dimension" variable was defined such that for each pixel, the total number of rays used was dimension squared, and the output colour was the average of that pixel's samplign rays. For the output BMP files submitted, the dimension variable was 4 (and thus 16 rays were used to shade each pixel).
+Anti-aliasing was done by using a uniformly distributed grid sampling algorithm. An integer "anti-aliasing dimension" variable was defined such that for each pixel, the total number of rays used was dimension squared, and the output colour was the average of that pixel's samplign rays. For the output BMP files submitted, the dimension variable was 5 (and thus 25 rays were used to shade each pixel).
 
 Part B:
 The main character model was obtained from TurboSquid in the form of an OBJ file, which was parsed and redrawn using OpenGL into seven separate parts: chest, head, left arm, left leg, right arm, right leg, and badge.
