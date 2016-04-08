@@ -36,9 +36,12 @@ util.h
 makefile
 
 Part A - Output Files:
-
-
-
+scene_signature_view1.bmp
+scene_signature_view2.bmp
+diffuse_and_ambient_view1.bmp
+diffuse_and_ambient_view2.bmp
+phong_view1.bmp
+phong_view2.bmp
 
 Part B - Program:
 main.cpp
