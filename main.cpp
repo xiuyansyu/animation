@@ -381,8 +381,7 @@ void updateKeyframeButton(int)
 
 	// Update the appropriate entry in the 'keyframes' array
 	// with the 'joint_ui_data' data
-	keyframes[keyframeID].setDOFVector(joint_ui_data->getDOFVector());
-	keyframes[keyframeID].setTime(joint_ui_data->getTime());
+	keyframes[keyframeID] = *joint_ui_data;
 
 	// Let the user know the values have been updated
 	sprintf(msg, "Status: Keyframe %d updated successfully", keyframeID);
