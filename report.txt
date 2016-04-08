@@ -16,8 +16,7 @@ The main character model was obtained from TurboSquid in the form of an OBJ file
 Control variables for the positioning of parts, as well as lights and camera were added.
 An animation tool inspired from Assignment 2 was created to control the scene's degrees of freedom. The user interface was used to save keyframes to file, which were interpolated to create movement.
 Cubic interpolation was used for animation smoothness. Four points, p0, p1, p2 and p3 were first found, and time was calculated between p1 and p2. Then the coefficient a0, a1, a2 and a3 were calculated by applying the corresponding formulas. At the beginning of the spline and the end of the spline where four distinct points could not be found, the first point and the last point were duplicated to make up for four points. For example, at the beginning of the spline, p0 = p1.
-
-TODO: For submission purposes, the animation tool was removed and replaced with a simple user interface for loading keyframes and playing the animation.
+Skybox is added to the scene. 6 sides of the cube were first loaded to the texture. Then the 6 textures were drawn to the scene as a cube that wraps the entire scene.
 
 
 Files
@@ -63,18 +62,20 @@ leftleg.obj
 rightarm.obj
 rightleg.obj
 stamp.obj
+data/
 
 External Resources
 ------------------------
 http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
 http://www.turbosquid.com/3d-models/free-max-mode-baymax-big-hero-6/881191/
 https://steveharveynz.wordpress.com/category/programming/c-raytracer/
+http://pastebin.com/LUHqfJYC
 
 Role of Each Member
 ------------------------
 Chi Xi Huang:
 Implemented ray casting, ray-sphere and ray-square intersections, and Phong shading for Part A.
-Implemented cubic interpolation between keyframes for Part B's animation.
+Implemented cubic interpolation between keyframes, skybox and generated final animation for Part B's animation.
 
 Xiuyan Yu:
 Implemented anti-aliasing for Part A and generated three required renders of the scene.
